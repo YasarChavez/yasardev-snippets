@@ -1,0 +1,27 @@
+{
+    "Base de datos simple": {
+        "prefix": "ys-spring-prop-bbdd",
+        "body": ["#BASE DE DATOS MYSQL\nspring.datasource.url=jdbc:mysql://localhost:3306/${1:BASEDEDATOS}?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8&createDatabaseIfNotExist=true\nspring.datasource.username=root\nspring.datasource.password=root\nspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver\nspring.jpa.show-sql= true\nspring.jpa.hibernate.ddl-auto=update\nspring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect\nspring.thymeleaf.cache= false"],
+        "description": "Base de datos simple"
+    },
+    "Spring Boot Email": {
+        "prefix": "ys-spring-prop-email",
+        "body": ["#EMAIL\nspring.mail.host=smtp.gmail.com\nspring.mail.port=587\nspring.mail.username=user@gmail.com\nspring.mail.password=password\nspring.mail.properties.mail.smtp.auth=true\nspring.mail.properties.mail.smtp.starttls.enable=true"],
+        "description": "Spring Boot Email"
+    },
+    "Config Admin Spring Security": {
+        "prefix": "ys-spring-secu",
+        "body": ["#SECURITY\nspring.security.user.name=admin\nspring.security.user.password=admin"],
+        "description": "Nombre de usuario y contraseña = admin"
+    },
+    "Tiempo de la Sesion": {
+        "prefix": "ys-spring-sesion",
+        "body": ["#TIEMPO SESION\nserver.servlet.session.timeout=600"],
+        "description": "Duracion de la sesion de usuario"
+    },
+    "Tamaño archivos": {
+        "prefix": "ys-spring-archivos",
+        "body": ["#TAMAÑO ARCHIVOS\nspring.servlet.multipart.max-file-size=128KB\nspring.servlet.multipart.max-request-size=128KB"],
+        "description": "Tamaño máximo de los archivos"
+    }
+}

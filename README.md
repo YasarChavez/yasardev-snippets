@@ -1,12 +1,12 @@
-En cada carpeta se encuentra un archivo .json con los Snippets de codigo.
-
 Los pefijos son los siguientes:
 
+html,java  
 **!ys-**  
-*o*  
-**ys-**
 
-dependiendo del lenguaje.
+spring-boot-properties  
+**ys-**  
 
+Repositorio con los Snippets:  
+https://github.com/YasarChavez/Mis-Snippets  
 Mi generador de Snippets para VSCode:  
 https://yasarchavez.github.io/VSC-Snippets-Generator/

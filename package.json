@@ -2,7 +2,7 @@
   "name": "yasardev-snippets",
   "displayName": "YasarDev - Snippets",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -20,6 +20,14 @@
       {
         "language": "html",
         "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "spring-boot-properties",
+        "path": "./snippets/spring-boot-properties.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.code-snippets"
       }
     ]
   }
