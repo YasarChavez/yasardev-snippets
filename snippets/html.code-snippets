@@ -1,0 +1,47 @@
+{
+    "HTML5 with Bootstrap": {
+        "prefix": "!ys-html-bs",
+        "body": ["<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN\" crossorigin=\"anonymous\" />\n        <title>${1:Title}</title>\n    </head>\n    <body>\n        <h1>${2:Hello world}</h1>\n        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL\" crossorigin=\"anonymous\"></script>\n    </body>\n</html>\n"],
+        "description": "HTML5 with Bootstrap"
+    },
+    "Modal Simple": {
+        "prefix": "!ys-html-bs5-modal",
+        "body": ["<!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">\n    ${1:Launch demo modal}\n  </button>\n  \n  <!-- Modal -->\n  <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h1 class=\"modal-title fs-5\" id=\"exampleModalLabel\">${2:Modal title}</h1>\n          <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n        </div>\n        <div class=\"modal-body\">\n          ${3:Edit here}\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n          <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n        </div>\n      </div>\n    </div>\n  </div>"],
+        "description": "Modal Simple"
+    },
+    "Mensajes Condicionales": {
+        "prefix": "!ys-th-mensajes-condicionales",
+        "body": ["        <div class=\"container my-1\">\n            <!-- Mensajes Condicionales -->\n            <div th:if=\"${error != null}\">\n                <div class=\"alert text-center alert-danger fade show\" role=\"alert\">\n                    <strong>ERROR</strong>\n                    <p th:text=\"${error}\"></p>\n                </div>\n            </div>\n            <div th:if=\"${exito != null}\">\n                <div class=\"alert text-center alert-success fade show\" role=\"alert\">\n                    <strong>EXITO</strong>\n                    <p th:text=\"${exito}\"></p>\n                </div>\n            </div>\n            <!-- Mensajes Condicionales -->\n        </div>"],
+        "description": "Mensajes Condicionales de Exito / Error con Thymeleaf"
+    },
+    "sec:authorize": {
+        "prefix": "!ys-th-sec-auth",
+        "body": ["sec:authorize=\"hasRole('${1:ROLE_ADMIN}')\""],
+        "description": "Autorizado si tiene un rol especifico"
+    },
+    "th:replace": {
+        "prefix": "!ys-th-replace",
+        "body": ["<div th:replace=\"~{${1:PATH} :: ${2:NAME}}\"></div>"],
+        "description": "Reemplazar por un fragmento de thymeleaf"
+    },
+    "th:text": {
+        "prefix": "!ys-th-text",
+        "body": ["th:text=\"${${variable}}\""],
+        "description": "Reemplazar por un fragmento de thymeleaf"
+    },
+    "th:each": {
+        "prefix": "!ys-th-each",
+        "body": ["th:each=\"${objeto} : ${${objetos}}\""],
+        "description": ""
+    },
+    "Editar Elemento": {
+        "prefix": "!ys-th-editarElemento",
+        "body": ["<a th:href=\"@{/${1:ruta}/${2:modificar}/__${${3:id}}__}\" title=\"Editar ${4:Elemento}\"><button>${5:Editar}</button></a>"],
+        "description": "Genera un enlace para editar un elemento"
+    },
+    "Eliminar Elemento": {
+        "prefix": "!ys-th-eliminarElemento",
+        "body": ["<a th:href=\"@{/${1:ruta}/${2:eliminar}/__${${3:id}}__}\" title=\"Eliminar ${4:Elemento}\" onclick=\"return confirm('¿Estás seguro de que deseas eliminar este ${4:elemento}?');\"><button>${5:Eliminar}</button></a>"],
+        "description": "Genera un enlace para eliminar un elemento con confirmación"
+    }
+}
