@@ -1,0 +1,37 @@
+{
+    "Hola mundo en java": {
+        "prefix": "!ys-java-hola-mundo",
+        "body": ["System.out.println(\"Hola mundo\");"],
+        "description": "Hola mundo en java"
+    },
+    "Scanner Leer": {
+        "prefix": "!ys-java-scanner",
+        "body": ["Scanner leer = new Scanner(System.in).useDelimiter(\"\\n\");"],
+        "description": "Scanner Leer"
+    },
+    "hasRole": {
+        "prefix": "!ys-java-hasRole",
+        "body": ["@PreAuthorize(\"hasRole('${1:ROLE_ADMIN}')\")"],
+        "description": "Accesible si tiene un rol especifico"
+    },
+    "UUID": {
+        "prefix": "!ys-java-uuid",
+        "body": ["    @Id\n    @GeneratedValue(generator = \"uuid\")\n    @GenericGenerator(name = \"uuid\", strategy = \"uuid2\") //Estrategia alternativa\n    private String id;"],
+        "description": "Generador UUID para entidad"
+    },
+    "ID generación IDENTITY": {
+        "prefix": "!ys-java-identity",
+        "body": ["@Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private ${1:Integer} id;"],
+        "description": "ID generación IDENTITY"
+    },
+    "Enum Rol": {
+        "prefix": "!ys-java-rol",
+        "body": ["@Enumerated(EnumType.STRING)\n    private ${1:Rol} ${2:rol};"],
+        "description": "Anotación Enum"
+    },
+    "Ejemplo Sort Comparator": {
+        "prefix": "!ys-java-comparator",
+        "body": ["${1:lista}.sort(Comparator.comparing(${2:Entidad}::${3:getAtributo}));"],
+        "description": "Ejemplo Sort Comparator"
+    }
+}
