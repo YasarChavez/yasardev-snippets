@@ -1,4 +1,4 @@
-Los pefijos son los siguientes:
+Los prefijos son los siguientes:
 
 html,java  
 **!ys-**  
