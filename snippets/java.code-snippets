@@ -33,5 +33,15 @@
         "prefix": "!ys-java-comparator",
         "body": ["${1:lista}.sort(Comparator.comparing(${2:Entidad}::${3:getAtributo}));"],
         "description": "Ejemplo Sort Comparator"
+    },
+    "GetMapping": {
+        "prefix": "!ys-java-getmapping",
+        "body": ["    @GetMapping(\"${1:/}\")\n    public String ${2:index}(${3:Args}){\n        return \"${4:index.html}\";\n    }"],
+        "description": "GetMapping Simple"
+    },
+    "PostMapping": {
+        "prefix": "!ys-java-postmapping",
+        "body": ["    @PostMapping(\"${1:/}\")\n    public String ${2:post}(${3:Args}){\n        return \"${4:post.html}\";\n    }"],
+        "description": "PostMapping Simple"
     }
 }
