@@ -43,5 +43,21 @@
         "prefix": "!ys-java-postmapping",
         "body": ["    @PostMapping(\"${1:/}\")\n    public String ${2:post}(${3:Args}){\n        return \"${4:post.html}\";\n    }"],
         "description": "PostMapping Simple"
-    }
+    },
+	"Java Page": {
+		"prefix": "!ys-java-page",
+		"body": [
+		  "    @GetMapping(\"/lista\")",
+		  "    public String ${1:paginarEntidad}(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {",
+		  "        Page<${2:Entidad}> page = ${3:entidadServicio}.paginar(pageable);",
+		  "        model.addAttribute(\"page\", page);",
+		  "        model.addAttribute(\"currentPage\", page.getNumber());",
+		  "        model.addAttribute(\"pageNumbers\", page.getNumber());",
+		  "        model.addAttribute(\"totalItems\", page.getTotalElements());",
+		  "        model.addAttribute(\"totalPages\", page.getTotalPages());",
+		  "        return \"${4:example}\";",
+		  "    }"
+		],
+		"description": "Java Page"
+	  }
 }
