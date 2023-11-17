@@ -44,8 +44,8 @@
         "body": ["    @PostMapping(\"${1:/}\")\n    public String ${2:post}(${3:Args}){\n        return \"${4:post.html}\";\n    }"],
         "description": "PostMapping Simple"
     },
-	"Java Page": {
-		"prefix": "!ys-java-page",
+	"Java Page Controller": {
+		"prefix": "!ys-java-page-cont",
 		"body": [
 		  "    @GetMapping(\"/lista\")",
 		  "    public String ${1:paginarEntidad}(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {",
@@ -58,6 +58,15 @@
 		  "        return \"${4:example}\";",
 		  "    }"
 		],
-		"description": "Java Page"
-	  }
+		"description": "Java Page Controller"
+	  },
+      "Java Page Service": {
+        "prefix": "!ys-java-page-serv",
+        "body": [
+          "    public Page<${1:entidad}> ${2:nombreMetodo}(Pageable pageable) {",
+        "        return ${3:entidadRepository}.findAll(pageable);",
+        "    }"
+        ],
+        "description": "Java Page Service"
+        }
 }
