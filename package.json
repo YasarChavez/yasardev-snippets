@@ -2,7 +2,7 @@
   "name": "yasardev-snippets",
   "displayName": "YasarDev - Snippets",
   "description": "Snippets Html,Java,Thymeleaf,Spring Boot Properties",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.7.0"
   },
