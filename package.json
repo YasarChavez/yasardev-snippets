@@ -1,8 +1,8 @@
 {
   "name": "yasardev-snippets",
   "displayName": "YasarDev - Snippets",
-  "description": "Snippets Html,Java,Thymeleaf,Spring Boot Properties",
-  "version": "0.1.1",
+  "description": "Snippets Html,Java,Thymeleaf,Spring Boot Properties, Pom.xml",
+  "version": "0.1.2",
   "engines": {
     "vscode": "^1.7.0"
   },
@@ -28,6 +28,10 @@
       {
         "language": "java",
         "path": "./snippets/java.code-snippets"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.code-snippets"
       }
     ]
   }
