@@ -16,7 +16,7 @@
     },
     "sec:authorize": {
         "prefix": "!ys-th-sec-auth",
-        "body": ["sec:authorize=\"hasRole('${1:ROLE_ADMIN}')\""],
+        "body": ["        <div sec:authorize=\"isAuthenticated()\">This content is only shown to authenticated users.</div>", "        <div sec:authorize=\"hasRole('ROLE_ADMIN')\">This content is only shown to administrators.</div>", "        <div sec:authorize=\"hasRole('ROLE_USER')\">This content is only shown to users.</div>"],
         "description": "Autorizado si tiene un rol especifico"
     },
     "th:replace": {
@@ -123,5 +123,10 @@
         "prefix": "!ys-bs5-progress",
         "body": ["<div class=\"progress\" role=\"progressbar\" aria-label=\"Basic example\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n  <div class=\"progress-bar\" style=\"width: 0%\"></div>\n</div>\n<div class=\"progress\" role=\"progressbar\" aria-label=\"Basic example\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n  <div class=\"progress-bar\" style=\"width: 25%\"></div>\n</div>\n<div class=\"progress\" role=\"progressbar\" aria-label=\"Basic example\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n  <div class=\"progress-bar\" style=\"width: 50%\"></div>\n</div>\n<div class=\"progress\" role=\"progressbar\" aria-label=\"Basic example\" aria-valuenow=\"75\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n  <div class=\"progress-bar\" style=\"width: 75%\"></div>\n</div>\n<div class=\"progress\" role=\"progressbar\" aria-label=\"Basic example\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n  <div class=\"progress-bar\" style=\"width: 100%\"></div>\n</div>"],
         "description": "Progress"
+    },
+    "Mostrar nombre del usuario": {
+        "prefix": "!ys-th-nombre-usuario",
+        "body": ["<!-- Mostrar nombre del usuario mediante la session -->", "<h2 th:if=\"${session.usuariosession != null}\" th:text=\"${session.usuariosession.nombre}\"></h2>"],
+        "description": "Mostrar nombre del usuario mediante la session"
     }
 }

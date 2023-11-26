@@ -44,28 +44,29 @@
         "body": ["    @PostMapping(\"${1:/}\")\n    public String ${2:post}(${3:Args}){\n        return \"${4:post.html}\";\n    }"],
         "description": "PostMapping Simple"
     },
-	"Java Page Controller": {
-		"prefix": "!ys-java-page-cont",
-		"body": [
-		  "    @GetMapping(\"/lista\")",
-		  "    public String ${1:paginarEntidad}(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {",
-		  "        Page<${2:Entidad}> page = ${3:entidadServicio}.paginar(pageable);",
-		  "        model.addAttribute(\"page\", page);",
-		  "        model.addAttribute(\"currentPage\", page.getNumber());",
-		  "        model.addAttribute(\"totalItems\", page.getTotalElements());",
-		  "        model.addAttribute(\"totalPages\", page.getTotalPages());",
-		  "        return \"${4:example}\";",
-		  "    }"
-		],
-		"description": "Java Page Controller"
-	  },
-      "Java Page Service": {
+    "Java Page Controller": {
+        "prefix": "!ys-java-page-cont",
+        "body": ["    @GetMapping(\"/lista\")", "    public String ${1:paginarEntidad}(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {", "        Page<${2:Entidad}> page = ${3:entidadServicio}.paginar(pageable);", "        model.addAttribute(\"page\", page);", "        model.addAttribute(\"currentPage\", page.getNumber());", "        model.addAttribute(\"totalItems\", page.getTotalElements());", "        model.addAttribute(\"totalPages\", page.getTotalPages());", "        return \"${4:example}\";", "    }"],
+        "description": "Java Page Controller"
+    },
+    "Java Page Service": {
         "prefix": "!ys-java-page-serv",
-        "body": [
-          "    public Page<${1:entidad}> ${2:nombreMetodo}(Pageable pageable) {",
-        "        return ${3:entidadRepository}.findAll(pageable);",
-        "    }"
-        ],
+        "body": ["    public Page<${1:entidad}> ${2:nombreMetodo}(Pageable pageable) {", "        return ${3:entidadRepository}.findAll(pageable);", "    }"],
         "description": "Java Page Service"
-        }
+    },
+    "Clase EmailService": {
+        "prefix": "!ys-java-Email",
+        "body": ["@Service", "public class ${1:EmailService} {", "    @Autowired", "    private JavaMailSender emailSender;", "", "    public void enviarCorreo(String destinatario, String asunto, String mensaje) {", "        SimpleMailMessage correo = new SimpleMailMessage();", "        correo.setTo(destinatario);", "        correo.setSubject(asunto);", "        correo.setText(mensaje);", "        ", "        emailSender.send(correo);", "    }", "}"],
+        "description": "Clase EmailService"
+    },
+    "Clase Seguridad Completa": {
+        "prefix": "!ys-java-Seguridad-Clase",
+        "body": ["@Configuration", "@EnableWebSecurity", "@EnableMethodSecurity", "public class ${1:SeguridadWeb} {", "", "    @Autowired", "    public ${2:UsuarioServicio} ${3:usuarioServicio};", "", "    // Encryptar contraseñas", "    @Autowired", "    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {", "        auth.userDetailsService(${3:usuarioServicio})", "                .passwordEncoder(new BCryptPasswordEncoder());", "    }", "", "    // Direcciones permitidas y filtros", "    @Bean", "    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {", "        return httpSecurity", "                .csrf(csrf -> {", "                    csrf.disable();", "                })", "                // Direcciones permitidas", "                .authorizeHttpRequests(auth -> {", "                    auth.requestMatchers(\"/admin/*\").hasRole(\"ADMIN\");", "                    auth.requestMatchers(\"/login\", \"/registrar\").permitAll();", "                    auth.requestMatchers(\"/css/*\", \"/js/*\", \"/img/*\", \"/registrar\", \"/registro\")", "                            .permitAll();", "                    auth.anyRequest().authenticated();", "                })", "                // Formulario de login", "                .formLogin(form -> {", "                    form.loginPage(\"/login\"); // Url de la pagina de login\")", "                    form.loginProcessingUrl(\"/logincheck\"); // Url del action del formulario", "                    form.usernameParameter(\"email\"); // Nombre del input del formulario\")", "                    form.passwordParameter(\"password\"); // Nombre del input del formulario\")", "                    form.defaultSuccessUrl(\"/inicio\", true); // Url de inicio correcto", "                    // form.successHandler(successHandler()); // Redirect al hacer login correcto ↓", "                    // Metodo abajo", "                    form.permitAll();", "                })", "                .logout(logout -> {", "                    logout.logoutUrl(\"/logout\"); // Url de logout", "                    logout.logoutSuccessUrl(\"/\"); // Url de redireccionamiento al hacer logout", "                    logout.permitAll();", "                })", "                .sessionManagement(session -> {", "                    session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS); // ALWAYS, IF_REQUIRED, NEVER,", "                                                                                 // STATELESS", "                    session.maximumSessions(2); // Maximo de sesiones permitidas", "                    session.invalidSessionUrl(\"/\"); // Url de redireccionamiento cuando se cierra sesion", "                    session.sessionFixation(sessionFixation -> {", "                        // migrateSession() - newSession() - none()", "                        sessionFixation.migrateSession();", "                    });", "                    sessionRegistry();", "", "                })", "                .build();", "    }", "", "    @Bean", "    public SessionRegistry sessionRegistry() {", "        return new SessionRegistryImpl();", "    }", "", "    }", ""],
+        "description": "Clase Seguridad Completa"
+    },
+    "UserDetails loadUserByUsername": {
+        "prefix": "!ys-java-UserDetails",
+        "body": ["//El servicio debe implementar ↓", "// implements UserDetailsService", "", "@Override", "    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {", "        Usuario usuario = usuarioRepositorio.findByEmail(email); // ←MODIFICAR", "        if (usuario != null) { // ←MODIFICAR", "", "            List<GrantedAuthority> permisos = new ArrayList<>();", "", "            GrantedAuthority perm = new SimpleGrantedAuthority(\"ROLE_\" + usuario.getRol().toString());", "", "            permisos.add(perm);", "", "            // Luego de validar el usuario guardamos una sesion web", "            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();", "", "            HttpSession session = attr.getRequest().getSession(true);", "", "            // Tiempo de inactividad en segundos para cerrar la sesión", "            // session.setMaxInactiveInterval(60);", "", "            // La session contiene los datos del usuario recuperado de la base de datos", "            session.setAttribute(\"usuariosession\", usuario);", "", "            return new User(usuario.getEmail(), usuario.getPassword(), permisos);  // ←MODIFICAR", "        } else {", "            return null;", "        }", "    }"],
+        "description": "Para el servicio de Usuario, para obtener los datos de la session"
+    }
 }
