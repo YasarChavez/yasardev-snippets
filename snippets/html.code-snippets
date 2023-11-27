@@ -19,6 +19,11 @@
         "body": ["        <div sec:authorize=\"isAuthenticated()\">This content is only shown to authenticated users.</div>", "        <div sec:authorize=\"hasRole('ROLE_ADMIN')\">This content is only shown to administrators.</div>", "        <div sec:authorize=\"hasRole('ROLE_USER')\">This content is only shown to users.</div>"],
         "description": "Autorizado si tiene un rol especifico"
     },
+    "Nombrar Fragmento": {
+        "prefix": "!ys-th-fragment",
+        "body": ["<div th:fragment=\"${1:nombre}\">", "", "</div>"],
+        "description": "Nombrar Fragmento"
+    },
     "th:replace": {
         "prefix": "!ys-th-replace",
         "body": ["<div th:replace=\"~{${1:PATH} :: ${2:NAME}}\"></div>"],
@@ -38,6 +43,11 @@
         "prefix": "!ys-th-each",
         "body": ["th:each=\"${objeto} : ${${objetos}}\""],
         "description": ""
+    },
+    "Linkear CSS Thymeleaf": {
+        "prefix": "!ys-th-link-css",
+        "body": ["<link rel=\"stylesheet\" th:href=\"@{/css/estilos.css}\" />"],
+        "description": "Linkear CSS Thymeleaf"
     },
     "Editar Elemento": {
         "prefix": "!ys-th-editarElemento",
