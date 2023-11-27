@@ -36,13 +36,18 @@
     },
     "GetMapping": {
         "prefix": "!ys-java-getmapping",
-        "body": ["    @GetMapping(\"${1:/}\")\n    public String ${2:index}(${3:Args}){\n        return \"${4:index.html}\";\n    }"],
+        "body": ["    @GetMapping( \"/\") // GetMapping Simple.", "    public String ${1:NOMBRE}() {", "        return \"index.html\";", "    }", "    @GetMapping({ \"/\", \"/index\" }) // Dos urls misma vista.", "    public String ${2:NOMBRE}() {", "        return \"index.html\";", "    }"],
         "description": "GetMapping Simple"
     },
     "PostMapping": {
         "prefix": "!ys-java-postmapping",
         "body": ["    @PostMapping(\"${1:/}\")\n    public String ${2:post}(${3:Args}){\n        return \"${4:post.html}\";\n    }"],
         "description": "PostMapping Simple"
+    },
+    "RequestMapping": {
+        "prefix": "!ys-java-requestmapping",
+        "body": ["    @PreAuthorize(\"hasRole('ROLE_ADMIN')\")", "    @RequestMapping(\"/eliminar/{id}\") //Ajustar", "    public String eliminarEntidad(@PathVariable(\"id\") String id) {", "        EntidadServicio.eliminarEntidad(id); //Cambiar", "        return \"redirect:/entidad/listar\"; //Cambiar", "    }"],
+        "description": "RequestMapping para eliminar entidad"
     },
     "Java Page Controller": {
         "prefix": "!ys-java-page-cont",
@@ -68,5 +73,15 @@
         "prefix": "!ys-java-UserDetails",
         "body": ["//El servicio debe implementar ↓", "// implements UserDetailsService", "", "@Override", "    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {", "        Usuario usuario = usuarioRepositorio.findByEmail(email); // ←MODIFICAR", "        if (usuario != null) { // ←MODIFICAR", "", "            List<GrantedAuthority> permisos = new ArrayList<>();", "", "            GrantedAuthority perm = new SimpleGrantedAuthority(\"ROLE_\" + usuario.getRol().toString());", "", "            permisos.add(perm);", "", "            // Luego de validar el usuario guardamos una sesion web", "            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();", "", "            HttpSession session = attr.getRequest().getSession(true);", "", "            // Tiempo de inactividad en segundos para cerrar la sesión", "            // session.setMaxInactiveInterval(60);", "", "            // La session contiene los datos del usuario recuperado de la base de datos", "            session.setAttribute(\"usuariosession\", usuario);", "", "            return new User(usuario.getEmail(), usuario.getPassword(), permisos);  // ←MODIFICAR", "        } else {", "            return null;", "        }", "    }"],
         "description": "Para el servicio de Usuario, para obtener los datos de la session"
+    },
+    "Solo Usuarios anónimos": {
+        "prefix": "!ys-java-isAnonymous",
+        "body": ["// Para que solo sea visible para usuarios no logueados", "@PreAuthorize(\"isAnonymous()\")"],
+        "description": "Para que solo sea visible para usuarios no logueados"
+    },
+    "Clase ErrorControlador": {
+        "prefix": "!ys-java-error-controller",
+        "body": ["@Controller", "public class ErrorControlador implements ErrorController {", "    ", "    @RequestMapping(value = \"/error\", method = { RequestMethod.GET, RequestMethod.POST })", "    public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {", "        ModelAndView errorPage = new ModelAndView(\"error/error.html\"); //CREAR ESTA VISTA", "        String errorMsg = \"\";", "", "        int httpErrorCode = getErrorCode(httpRequest);", "", "        switch (httpErrorCode) {", "            case 400: {", "                errorMsg = \"El recurso solicitado no existe.\";", "                break;", "            }", "            case 403: {", "                errorMsg = \"No tiene permisos para acceder al recurso.\";", "                break;", "            }", "            case 401: {", "                errorMsg = \"No se encuentra autorizado.\";", "                break;", "            }", "            case 404: {", "                errorMsg = \"El recurso solicitado no fue encontrado.\";", "                break;", "            }", "            case 500: {", "                errorMsg = \"Ocurrió un error interno.\";", "                break;", "            }", "            }", "    ", "            errorPage.addObject(\"codigo\", httpErrorCode);", "            errorPage.addObject(\"mensaje\", errorMsg);", "            return errorPage;", "        }", "    ", "        private int getErrorCode(HttpServletRequest httpRequest) {", "            return (Integer) httpRequest.getAttribute(\"jakarta.servlet.error.status_code\");", "        }", "    ", "        ", "        public String getErrorPath() {", "            return \"error/error.html\";", "        }", "", "}"],
+        "description": "ErrorControlador "
     }
 }
