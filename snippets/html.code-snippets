@@ -189,7 +189,7 @@
         "            // Función para cambiar el tamaño de la página",
         "            function changePageSize(size) {",
         "                // Redirige a la primera página cuando cambias el tamaño",
-        "                window.location.href = \"/lista?page=0&size=\" + size;<!-- MODIFICAR RUTA-->",
+        "                window.location.href = \"/lista?page=0&size=\" + size; //MODIFICAR RUTA",
         "            }",
         "        </script>"
         ],
