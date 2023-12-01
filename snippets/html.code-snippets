@@ -11,9 +11,26 @@
     },
     "Mensajes Condicionales": {
         "prefix": "!ys-th-mensajes-condicionales",
-        "body": ["        <div class=\"container my-1\">\n            <!-- Mensajes Condicionales -->\n            <div th:if=\"${error != null}\">\n                <div class=\"alert text-center alert-danger fade show\" role=\"alert\">\n                    <strong>ERROR</strong>\n                    <p th:text=\"${error}\"></p>\n                </div>\n            </div>\n            <div th:if=\"${exito != null}\">\n                <div class=\"alert text-center alert-success fade show\" role=\"alert\">\n                    <strong>EXITO</strong>\n                    <p th:text=\"${exito}\"></p>\n                </div>\n            </div>\n            <!-- Mensajes Condicionales -->\n        </div>"],
+        "body": [
+          "        <div class=\"container my-1\">",
+        "            <!-- Mensajes Condicionales -->",
+        "            <div th:if=\"${error != null}\">",
+        "                <div class=\"alert text-center alert-danger fade show\" role=\"alert\">",
+        "                    <strong>ERROR</strong>",
+        "                    <p th:text=\"${${error}}\"></p>",
+        "                </div>",
+        "            </div>",
+        "            <div th:if=\"${exito != null}\">",
+        "                <div class=\"alert text-center alert-success fade show\" role=\"alert\">",
+        "                    <strong>EXITO</strong>",
+        "                    <p th:text=\"${${exito}}\"></p>",
+        "                </div>",
+        "            </div>",
+        "            <!-- Mensajes Condicionales -->",
+        "        </div>"
+        ],
         "description": "Mensajes Condicionales de Exito / Error con Thymeleaf"
-    },
+        },
     "sec:authorize": {
         "prefix": "!ys-th-sec-auth",
         "body": ["        <div sec:authorize=\"isAuthenticated()\">This content is only shown to authenticated users.</div>", "        <div sec:authorize=\"hasRole('ROLE_ADMIN')\">This content is only shown to administrators.</div>", "        <div sec:authorize=\"hasRole('ROLE_USER')\">This content is only shown to users.</div>"],
