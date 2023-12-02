@@ -231,5 +231,15 @@
         "                            </div>"
         ],
         "description": "Thymeleaf Iterar sobre todas las imágenes"
-        }
+        },
+        "Mostrar una imagen": {
+            "prefix": "!ys-th-imagen",
+            "body": [
+              "<!-- Mostrar una imagen -->",
+            "<img th:src=\"@{/imagen/__${$session.usuariosession.id}__}\" alt=\"\">",
+            "<img th:src=\"@{/imagen/__${$usuario.id}__}\" alt=\"\">",
+            ""
+            ],
+            "description": "Thymeleaf Mostrar una imagen"
+            }
 }
