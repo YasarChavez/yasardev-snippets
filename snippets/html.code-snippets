@@ -221,5 +221,15 @@
         "prefix": "!ys-th-nombre-usuario",
         "body": ["<!-- Mostrar nombre del usuario mediante la session -->", "<h2 th:if=\"${session.usuariosession != null}\" th:text=\"${session.usuariosession.nombre}\"></h2>"],
         "description": "Mostrar nombre del usuario mediante la session"
-    }
+    },
+    "Iterar sobre todas las imágenes": {
+        "prefix": "!ys-th-ite-imagenes",
+        "body": [
+          " <!-- Iterar sobre todas las imágenes -->",
+        "                            <div th:each=\"imagen : ${page.imagenes}\">",
+        "                                <img th:src=\"@{/imagen/__${$imagen.id}__}\" alt=\"\" />",
+        "                            </div>"
+        ],
+        "description": "Thymeleaf Iterar sobre todas las imágenes"
+        }
 }
