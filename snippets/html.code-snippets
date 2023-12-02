@@ -241,5 +241,20 @@
             ""
             ],
             "description": "Thymeleaf Mostrar una imagen"
-            }
+            },
+            "Verificar si hay una imagen": {
+                "prefix": "!ys-th-verificar-imagen",
+                "body": [
+                  "                        <div>",
+                "                            <!-- Verificar si hay una imagen -->",
+                "                            <img th:src=\"@{/imagen/perfil/__${$usuario.id}__}\" alt=\"Imagen\" th:if=\"${$usuario.imagen ne null}\">",
+                "                            <img th:src=\"@{/imagen/__${$usuario.id}__}\"alt=\"Imagen\" th:if=\"${$usuario.imagen ne null}\">",
+                "                            <!-- Si no hay una imagen, mostrar una imagen por defecto -->",
+                "                            <div th:if=\"${$usuario.imagen eq null}\">",
+                "                                <img th:src=\"@{/images/user.png}\" alt=\"Imagen por defecto\"/>",
+                "                            </div>",
+                "                        </div>"
+                ],
+                "description": "Thymeleaf Verificar si hay una imagen"
+                }
 }
