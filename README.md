@@ -1,6 +1,6 @@
 Los prefijos son los siguientes:
 
-html,java,xml    
+html,java,xml,nix    
 **!ys-**  
 
 spring-boot-properties  
