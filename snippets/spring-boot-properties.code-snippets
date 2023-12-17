@@ -1,8 +1,13 @@
 {
-    "Base de datos simple": {
-        "prefix": "ys-spring-prop-bbdd",
+    "Base de datos simple Mysql": {
+        "prefix": "ys-spring-bbdd-mysql",
         "body": ["#BASE DE DATOS MYSQL\nspring.datasource.url=jdbc:mysql://localhost:3306/${1:BASEDEDATOS}?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8&createDatabaseIfNotExist=true\nspring.datasource.username=root\nspring.datasource.password=root\nspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver\nspring.jpa.show-sql= true\nspring.jpa.hibernate.ddl-auto=update\nspring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect\nspring.thymeleaf.cache= false"],
-        "description": "Base de datos simple"
+        "description": "Base de datos simple Mysql"
+    },
+    "Base de datos simple H2": {
+        "prefix": "ys-spring-bbdd-h2",
+        "body": ["#CONFIGURACION BASE DE DATOS H2", "#Cambiar puerto", "server.port=8081", "#Base de datos en modo file, usar url para /h2-console", "spring.datasource.url=jdbc:h2:file:./basededatos", "#Credenciales", "spring.datasource.username=root", "spring.datasource.password=root", "#Driver", "spring.datasource.driverClassName=org.h2.Driver", "#H2 console (Estado y Path)", "spring.h2.console.enabled=true", "spring.h2.console.path=/h2-console", "#JPA", "spring.jpa.show-sql= true", "spring.jpa.hibernate.ddl-auto=update", "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect", "#Thymeleaf", "spring.thymeleaf.cache= false", "########################################################################################", "", "#Inicialización de scripts SQL", "#ALWAYS: Este modo indica que los scripts SQL de inicialización deben ejecutarse siempre durante el inicio de la aplicación.", "#EMBEDDED: Este modo indica que los scripts SQL de inicialización deben ejecutarse solo para bases de datos integradas (por ejemplo, bases de datos embebidas como H2). No se ejecutarán para bases de datos externas.", "#NEVER: Este modo indica que los scripts SQL de inicialización no deben ejecutarse nunca.", "#ONCE: Este modo indica que los scripts SQL de inicialización deben ejecutarse solo si la base de datos no ha sido inicializada previamente. Es decir, solo en la primera ejecución.", "", "# spring.sql.init.mode=ALWAYS", "# spring.sql.init.schema-locations=file:./schema.sql", "# spring.sql.init.data-locations=file:./data.sql", ""],
+        "description": "Base de datos simple H2"
     },
     "Spring Boot Email": {
         "prefix": "ys-spring-prop-email",
